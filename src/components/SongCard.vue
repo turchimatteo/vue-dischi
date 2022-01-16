@@ -6,6 +6,7 @@
         <div class="song-title">{{ details.title }}</div>
         <div class="song-author">{{ details.author }}</div>
         <div class="song-date">{{ details.year }}</div>
+        {{ details.genre }}
     </div>
 </template>
 <script>
