@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header/>
-    <SongCardsList :filterGenre="selectedGenre" :filterAuthor="selectedAuthor" @genresListCreated="setGenresList" @authorsListCreated="setAuthorList" />
+    <Header @selectChanged="setFilters" :genres="genresList"/>
+    <SongCardsList :filterGenre="selectedGenre"  @genresListCreated="setGenresList" />
   </div>
 </template>
 
@@ -20,20 +20,15 @@ export default {
       selectedGenre: '',
       selectedAuthor: '',
       genresList: [],
-      authorsList: []
     };
   },
   methods: {
     setFilters: function(filters) {
       this.selectedGenre = filters.selectedGenre;
-      this.selectedAuthor = filters.selectedAuthor;
     },
     setGenresList: function(genres) {
       this.genresList = genres;
     },
-    setAuthorList: function(authors) {
-      this.authorsList = authors;
-    }
   }
 };
 </script>

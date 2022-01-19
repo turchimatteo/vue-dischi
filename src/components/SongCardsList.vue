@@ -18,14 +18,12 @@ export default {
     },
     props: {
         filterGenre: String,
-        filterAuthor: String
     },
     data: function() {
         return {
             discsList: [],
             isLoadingApi: true,
             genresList: [],
-            authorsList: []
         };
     },
     methods: {
@@ -37,30 +35,21 @@ export default {
                     if(!this.genresList.includes(element.genre)) {
                        this.genresList.push(element.genre); 
                     }
-                    if(!this.authorsList.includes(element.author)) {
-                        this.authorsList.push(element.author);
-                    }
                 });
                 this.$emit('genresListCreated', this.genresList);
-                this.$emit('authorsListCreated', this.authorsList);
                 this.isLoadingApi = false;
             });
         }
     },
     computed: {
         filteredDiscs: function() {
-            if(this.filterGenre === '' && this.filterAuthor === '') {
+            if(this.filterGenre === '') {
                 return this.discsList;
             }
             let filteredDiscs = this.discsList;
             if(this.filterGenre !== '') {
                 filteredDiscs = filteredDiscs.filter((element) => {
                     return element.genre === this.filterGenre;
-                });
-            }
-            if(this.filterAuthor !== '') {
-                filteredDiscs = filteredDiscs.filter((element) => {
-                    return element.author === this.filterAuthor;
                 });
             }
             return filteredDiscs;

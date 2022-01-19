@@ -6,12 +6,6 @@
             <option value="">Tutti i generi</option>
             <option v-for="(genre, index) in genres" :key="index" :value="genre">{{ genre }}</option>
         </select>
-
-        <label for="author">Author</label>
-        <select id="author" v-model="selectedAuthor" @change="emitFiltersValues()">
-            <option value="">Tutti gli autori</option>
-            <option v-for="(author, index) in authors" :key="index" :value="author">{{ author }}</option>
-        </select>
     </header>
 </template>
 <script>
@@ -19,19 +13,16 @@ export default {
     name: "Header",
     props: {
         genres: Array,
-        authors: Array
     },
     data: function() {
         return {
             selectedGenre: '',
-            selectedAuthor: ''
         };
     },
     methods: {
         emitFiltersValues: function() {
             this.$emit('selectChanged', {
                 selectedGenre: this.selectedGenre,
-                selectedAuthor: this.selectedAuthor
             });
         }
     }
